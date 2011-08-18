@@ -1,7 +1,7 @@
 class Account
   attr_reader :width, :height
-  INTRO_WIDTH = 500
-  MAN_SPACING = 10
+  INTRO_WIDTH = 600
+  MAN_SPACING = 5
   BACKGROUND = "#EEEEEE"
   
   def initialize(row, colours)
