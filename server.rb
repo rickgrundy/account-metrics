@@ -28,7 +28,7 @@ get '/' do
         <br/>
         Receive Metrics.
       </h1>
-      <form action="/generate" method="post" enctype="multipart/formdata" id="uploadform">
+      <form action="/" method="post" enctype="multipart/formdata" id="uploadform">
         <input type="file" name="csv" onchange="document.getElementById('uploadform').submit();"/>
         <input type="submit" style="display: none;"/>
       </form>
@@ -37,7 +37,7 @@ get '/' do
   EOS
 end
 
-post '/generate' do
+post '/' do
   csv = CSV.parse(params[:csv][:tempfile].read)
   data = InputData.new(csv)
   image = Canvas.new(data).render
