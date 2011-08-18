@@ -54,6 +54,7 @@ post '/' do
   image = Canvas.new(data).render
   image.format = "png"
   content_type "image/png"
+  attachment("#{data.title}.png")
   image.to_blob
 end
 
