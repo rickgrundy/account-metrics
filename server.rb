@@ -40,8 +40,8 @@ get '/' do
         <input type="submit" style="display: none;"/>
       </form>
       <div class="samples">
-        <a href="/sample-input">Sample Input</a> |
-        <a href="/sample-output">Sample Output</a>
+        <a href="/sample-input.csv">Sample Input</a> |
+        <a href="/sample-output.png">Sample Output</a>
       </div>
     </body>
   </html>
@@ -58,6 +58,5 @@ post '/' do
   image.to_blob
 end
 
-get '/sample-input' do
-  send_file("samples/input.csv")
-end
+get('/sample-input.csv') { send_file("samples/sample-input.csv", :disposition => "attachment", :filename => "sample-input.csv") }
+get('/sample-output.png') { send_file("samples/sample-output.png", :disposition => "attachment", :filename => "sample-output.png") }
