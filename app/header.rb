@@ -23,8 +23,8 @@ class Header
   def render_legend(img, width)
     x = width - LEGEND_ENTRY_WIDTH
     y = LEGEND_ENTRY_HEIGHT + 10
-    @data.group_titles.reverse.each_with_index do |title, i|
-      colour = @data.colours.reverse[i]
+    @data.group_titles.each_with_index do |title, i|
+      colour = @data.colours[i]
       Text.new(title, LEGEND_ENTRY_HEIGHT, colour).draw(img, x, y)
       draw = Magick::Draw.new
       draw.fill = colour
