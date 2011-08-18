@@ -1,8 +1,9 @@
 class Account
   attr_reader :width, :height
-  INTRO_WIDTH = 600
+  INTRO_WIDTH = 500
   MAN_SPACING = 5
   BACKGROUND = "#EEEEEE"
+  MAX_PER_ROW = 20
   
   def initialize(row, colours)
     @name = row.shift
@@ -12,8 +13,8 @@ class Account
     
     @colours = colours
         
-    @width = INTRO_WIDTH + (@people_count * (Man::WIDTH + MAN_SPACING))
-    @height = Man::HEIGHT
+    @width = INTRO_WIDTH + (MAX_PER_ROW * (Man::WIDTH + MAN_SPACING))
+    @height = Man::HEIGHT * (@people_count.to_f / MAX_PER_ROW).ceil
   end
   
   def render(width)
@@ -30,12 +31,18 @@ class Account
 
     x = INTRO_WIDTH
     y = 0
+    total_people = 0
     
     people_per_colour.each_with_index do |people, i|
       colour = @colours[i]
       people.times do
         img.composite!(Man.new(colour).render, x, y, Magick::OverCompositeOp)
+        total_people += 1
         x += Man::WIDTH + MAN_SPACING
+        if total_people % MAX_PER_ROW == 0
+          x = INTRO_WIDTH
+          y += Man::HEIGHT
+        end
       end
     end
   end
