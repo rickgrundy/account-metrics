@@ -9,7 +9,6 @@ image = Canvas.new(data).render
 
 output_file = "#{data.title}.png"
 image.write(output_file) do
-  self.quality         = quality
   self.format          = 'png'
   self.sampling_factor = '1x1'
 end
