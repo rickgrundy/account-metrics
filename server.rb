@@ -35,7 +35,7 @@ get '/' do
         <br/>
         Receive Metrics.
       </h1>
-      <form action="/" method="post" enctype="multipart/formdata" id="uploadform">
+      <form action="/" method="post" enctype="multipart/form-data" id="uploadform">
         <input type="file" name="csv" onchange="document.getElementById('uploadform').submit();"/>
         <input type="submit" style="display: none;"/>
       </form>
